@@ -12,4 +12,5 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin','as' => 'admin.','middl
         ->name('dashboard')->middleware('permission:full|admin.dashboard')->defaults('description', 'Thống kê');
     require_once "inc_admin/_inc_setting.php";
     require_once "inc_admin/_inc_acl.php";
+    require_once "inc_admin/_inc_blog.php";
 })->middleware("permission");

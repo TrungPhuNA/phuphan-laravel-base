@@ -13,9 +13,8 @@ class PermissionMiddleware
         if ($authGuard->guest()) {
             throw UnauthorizedException::notLoggedIn();
         }
-
         $emailSupperAdmin = config('setting.admin.email_supper_admin');
-        if(!empty($emailSupperAdmin) && $authGuard->email == $emailSupperAdmin)
+        if(!empty($emailSupperAdmin) && $authGuard->user()->email == $emailSupperAdmin)
             return $next($request);
 
         $checkPermission = config('setting.admin.check_permission');

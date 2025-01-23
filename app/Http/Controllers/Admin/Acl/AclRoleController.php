@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Admin\Acl;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Acl\RequestCreateAccount;
 use App\Http\Requests\Admin\Acl\RequestCreateRole;
 use App\Service\PermissionService;
 use App\Service\RoleService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Spatie\Permission\Models\Role;
 
 class AclRoleController extends Controller
 {
@@ -46,7 +44,6 @@ class AclRoleController extends Controller
 
     public function store(RequestCreateRole $requestCreateRole)
     {
-        dd($requestCreateRole->permissions);
         $roleDto = $requestCreateRole->except("_token", "permissions");
         $role = $this->roleService->create($roleDto);
         if ($role) {

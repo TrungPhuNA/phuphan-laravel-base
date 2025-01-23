@@ -24,6 +24,26 @@ return [
                 'type'     => 2
             ],
             [
+                'name'     => 'Blog',
+                'icon'     => 'file',
+                'id'       => 'blog',
+                'sub_menu' => [
+                    [
+                        'name'  => 'Tags',
+                        'route' => 'admin.blog.tag.index'
+                    ],
+                    [
+                        'name'  => 'Menu',
+                        'route' => 'admin.blog.menu.index'
+                    ],
+                    [
+                        'name'  => 'Bài viết',
+                        'route' => 'admin.blog.article.index'
+                    ],
+                ],
+                'type'     => 2
+            ],
+            [
                 'name'     => 'Phân quyền',
                 'icon'     => 'shield',
                 'id'       => 'acl',
