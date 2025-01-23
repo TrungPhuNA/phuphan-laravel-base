@@ -16,4 +16,5 @@ Route::group(['prefix' => 'auth','namespace' => 'Auth','as' => 'auth.'], functio
     Route::get('alert',[\App\Http\Controllers\Auth\RegisterController::class,'alertRegister'])->name("alert.register");
 
     Route::get('reset-password',[\App\Http\Controllers\Auth\RegisterController::class,'resetPassword'])->name("reset.password");
+    Route::get('logout',[\App\Http\Controllers\Auth\RegisterController::class,'logout'])->name("logout");
 });

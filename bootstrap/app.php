@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\PermissionMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -10,17 +11,18 @@ return Application::configure(basePath: dirname(__DIR__))
         web: [
             __DIR__.'/../routes/web.php',
             __DIR__.'/../routes/auth.php',
+            __DIR__.'/../routes/admin.php',
         ],
 
         commands: __DIR__.'/../routes/console.php',
-        health: '/up',
-        then: function () {
-            Route::namespace('Admin')->prefix('admin')->name('admin.')->group(base_path('routes/admin.php'));
-//            Route::namespace('Auth')->prefix('auth')->name('auth.')->group(base_path('routes/auth.php'));
-        },
+        health: '/up'
     )
     ->withMiddleware(function (Middleware $middleware) {
-
+        $middleware->alias([
+            'check.login.admin' => \App\Http\Middleware\CheckLoginMiddleware::class,
+            'permission' => PermissionMiddleware::class,
+        ]);
+//        $middleware->append(PermissionMiddleware::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
