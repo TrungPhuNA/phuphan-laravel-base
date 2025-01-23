@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('otp')->nullable();
+            $table->tinyInteger("total_resend_otp")->default(0);
             $table->string('phone')->nullable();
             $table->string("avatar")->nullable();
             $table->enum("status",["pending","verify","block","inactive"])->default("pending");

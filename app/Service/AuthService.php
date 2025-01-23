@@ -23,8 +23,33 @@ class AuthService
         return $this->authRepository->create($userDto);
     }
 
-    public function login()
+    public function findByEmail($email)
     {
+        return $this->authRepository->findByEmail($email);
+    }
 
+    public function findByToken($token)
+    {
+        return $this->authRepository->findByToken($token);
+    }
+
+    public function findByOtp($otp)
+    {
+        return $this->authRepository->findByOtp($otp);
+    }
+
+    public function createResetPassword($dataDto)
+    {
+        return $this->authRepository->createResetPassword($dataDto);
+    }
+
+    public function updateUser($userID, $dataDto)
+    {
+        return $this->authRepository->update($userID, $dataDto);
+    }
+
+    public function resetDataPassword($email)
+    {
+        return $this->authRepository->resetDataPassword($email);
     }
 }

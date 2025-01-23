@@ -2,7 +2,11 @@
 ```shell
 php artisan make:repository User --path=app
 ```
-
+# Run Project
+```shell
+php artisan queue:work
+php artisan serve
+```
 # Link tài liệu
 Theme ADMIN
 ``` 

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RequestResetPassword extends FormRequest
+class RequestUpdatePassword extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,15 @@ class RequestResetPassword extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|string|email|max:255',
+            'password' => [
+                'required',
+                'string',
+                'min:8', // ít nhất 8 ký tự
+                'regex:/[a-z]/', // ít nhất 1 chữ thường
+                'regex:/[A-Z]/', // ít nhất 1 chữ in hoa
+                'regex:/[0-9]/', // ít nhất 1 so
+            ],
+            're_password' => 'required|same:password',
         ];
     }
 }

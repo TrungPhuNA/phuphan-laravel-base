@@ -8,14 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
     <meta name="author" content="AdminKit">
-    <meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
-
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+    <link rel="shortcut icon" href="{{ asset('icon-48x48.png') }}" />
 
     <link rel="canonical" href="https://demo.adminkit.io/pages-reset-password.html" />
 
-    <title>Reset Password | AdminKit Demo</title>
+    <title>Reset Password | {{ config('setting.prefix_title') }}</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -25,22 +23,14 @@
 
     <!-- BEGIN SETTINGS -->
     <!-- Remove this after purchasing -->
-    <link class="js-stylesheet" href="css/light.css" rel="stylesheet">
-    <script src="js/settings.js"></script>
+    <link class="js-stylesheet" href="/static/light.css" rel="stylesheet">
+    <script src="/static/settings.js"></script>
     <style>
         body {
             opacity: 0;
         }
     </style>
-    <!-- END SETTINGS -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120946860-10"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-120946860-10', { 'anonymize_ip': true });
-    </script></head>
+</head>
 <!--
   HOW TO USE:
   data-theme: default (default), dark, light, colored
@@ -57,29 +47,31 @@
                 <div class="d-table-cell align-middle">
 
                     <div class="text-center mt-4">
-                        <h1 class="h2">Reset password</h1>
+                        <h1 class="h2">Quên mật khẩu</h1>
                         <p class="lead">
-                            Enter your email to reset your password.
+                            Điền email đăng ký để nhận lại đường link đặt lại mật khẩu
                         </p>
                     </div>
 
                     <div class="card">
                         <div class="card-body">
                             <div class="m-sm-3">
-                                <form>
+                                <form action="" method="POST" class="needs-validation" novalidate autocomplete="off">
+                                    @csrf
                                     <div class="mb-3">
-                                        <label class="form-label">Email</label>
-                                        <input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" />
+                                        <label class="form-label">Email đăng ký</label>
+                                        <input class="form-control form-control-lg" type="email" name="email" required placeholder="codehue94@gmail.com" />
+                                        <div class="invalid-feedback">Email không được để trống</div>
                                     </div>
                                     <div class="d-grid gap-2 mt-3">
-                                        <a class='btn btn-lg btn-primary' href='/'>Reset password</a>
+                                        <button type="submit" class='btn btn-lg btn-primary' href='/'>Xác nhận</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                     <div class="text-center mb-3">
-                        Don't have an account? <a href='/pages-sign-up'>Sign up</a>
+                        Bạn chưa có tài khoản? <a href='{{ route("auth.register") }}'>Đăng ký</a>
                     </div>
                 </div>
             </div>
@@ -87,28 +79,41 @@
     </div>
 </main>
 
-<script src="js/app.js"></script>
-
+<script src="/static/app.js"></script>
+</body>
+@if(session('success') || session('danger'))
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            window.notyf.open({
+                type: "{{ session('success') ? 'success' : 'danger' }}",
+                message: "{{ session('success') ?? session('danger') }}",
+                duration: 10000,
+                ripple: true,
+                dismissible: false,
+                position: {
+                    x: "right",
+                    y: "bottom"
+                }
+            });
+        });
+    </script>
+@endif
 <script>
-    document.addEventListener("DOMContentLoaded", function(event) {
-        setTimeout(function(){
-            if(localStorage.getItem('popState') !== 'shown'){
-                window.notyf.open({
-                    type: "success",
-                    message: "Get access to all 500+ components and 45+ pages with AdminKit PRO. <u><a class=\"text-white\" href=\"https://adminkit.io/pricing\" target=\"_blank\">More info</a></u> 🚀",
-                    duration: 10000,
-                    ripple: true,
-                    dismissible: false,
-                    position: {
-                        x: "left",
-                        y: "bottom"
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
                     }
-                });
-
-                localStorage.setItem('popState','shown');
-            }
-        }, 15000);
+                    form.classList.add('was-validated')
+                }, false)
+            })
     });
-</script></body>
-
+</script>
 </html>

@@ -83,13 +83,6 @@
                                             <a href='{{ route("auth.reset.password") }}'>Quên mật khẩu?</a>
                                         </small>
                                     </div>
-{{--                                    <div>--}}
-{{--                                        <div class="form-check align-items-center">--}}
-{{--                                            <input id="customControlInline" type="checkbox" class="form-check-input" value="remember-me" name="remember-me"--}}
-{{--                                                   checked>--}}
-{{--                                            <label class="form-check-label text-small" for="customControlInline">Remember me</label>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
                                     <div class="d-grid gap-2 mt-3">
                                         <button type="submit" class='btn btn-lg btn-primary'  title="Login">Đăng nhập</button>
                                     </div>
@@ -106,6 +99,23 @@
     </div>
 </main>
 <script src="/static/app.js"></script>
+@if(session('success') || session('danger'))
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            window.notyf.open({
+                type: "{{ session('success') ? 'success' : 'danger' }}",
+                message: "{{ session('success') ?? session('danger') }}",
+                duration: 10000,
+                ripple: true,
+                dismissible: false,
+                position: {
+                    x: "right",
+                    y: "bottom"
+                }
+            });
+        });
+    </script>
+@endif
 </body>
 
 </html>

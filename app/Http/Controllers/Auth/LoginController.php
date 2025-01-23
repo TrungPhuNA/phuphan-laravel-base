@@ -18,9 +18,12 @@ class LoginController extends Controller
         $credentials = $requestLogin->except("_token");
 
         if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            if($user->status !== "verify") {
+                return redirect()->back()->with("danger","Trạng thái tài khoản không hợp lệ");
+            }
             $requestLogin->session()->regenerate();
             return redirect()->to('/');
-//            return redirect()->intended('dashboard');
         }
 
         return back()->withErrors([
