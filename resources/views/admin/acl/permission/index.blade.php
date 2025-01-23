@@ -26,7 +26,6 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Method</th>
-                                    <th scope="col">Uri</th>
                                     <th scope="col">Group</th>
                                     <th scope="col">Description</th>
                                     <th scope="col">Created</th>
@@ -38,8 +37,19 @@
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->name }}</td>
-                                        <td>{{ $item->method }}</td>
-                                        <td>{{ $item->uri }}</td>
+                                        <td>
+                                            @foreach(explode('|', $item->method) as $method)
+                                                <span class="badge
+                                                    @if($method === 'GET') bg-success
+                                                    @elseif($method === 'POST') bg-primary
+                                                    @elseif($method === 'PUT') bg-warning
+                                                    @elseif($method === 'DELETE') bg-danger
+                                                    @else bg-secondary
+                                                    @endif">
+                                                    {{ $method }}
+                                                </span>
+                                            @endforeach
+                                        </td>
                                         <td>{{ $item->group }}</td>
                                         <td class="text-nowrap">{{ $item->description }}</td>
                                         <td class="text-nowrap">{{ $item->created_at->format("Y-m-d") }}</td>

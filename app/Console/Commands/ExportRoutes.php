@@ -28,27 +28,26 @@ class ExportRoutes extends Command
      */
     public function handle()
     {
-        // Lấy danh sách route
         $routes = Route::getRoutes();
+        $dataRoute = [];
         foreach ($routes as $route) {
-//            $output[] = [
-//                'method' => implode('|', $route->methods()),
-//                'uri' => $route->uri(),
-//                'name' => $route->getName() ?? 'N/A',
-//                'action' => $route->getActionName(),
-//            ];
-            $this->warn("=== URI : ".$route->uri()." |  Name: ".$route->getName() ?? 'N/A');
+            $group = $route->getAction('prefix') ?? 'N/A';
             $data = [
                 "name"        => $route->getName() ?? 'N/A',
                 "uri"         => $route->uri(),
                 "guard_name"  => "web",
+                "group"       => $group,
                 'method'      => implode('|', $route->methods()),
                 "created_at"  => Carbon::now(),
                 'description' => $route->defaults['description'] ?? 'No description',
             ];
-            Permission::updateOrInsert([
-                "name" => $route->getName() ?? 'N/A',
-            ], $data);
+            if (!empty($route->getName())) {
+                Permission::updateOrInsert([
+                    "name" => $route->getName() ?? 'N/A',
+                ], $data);
+            }
+            $dataRoute[] = $data;
         }
+        $this->table(['Name', 'URI', 'Guard', 'group', 'method', 'created_at','Description'], $dataRoute);
     }
 }
