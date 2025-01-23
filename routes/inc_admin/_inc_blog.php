@@ -53,5 +53,9 @@ Route::group(['prefix' => 'blog','namespace' => 'Blog','as' => 'blog.'], functio
             ->defaults('description', 'Cập nhật bài viết');
         Route::post("update/{id}",[\App\Http\Controllers\Admin\Blog\AdmBlogArticleController::class,'update'])
             ->defaults('description', 'Cập nhật bài viết');
+
+        Route::get("delete/{id}",[\App\Http\Controllers\Admin\Blog\AdmBlogArticleController::class,'delete'])
+            ->name("delete")
+            ->defaults('description', 'Xoá bài viết');
     });
 });
