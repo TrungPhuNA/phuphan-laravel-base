@@ -51,7 +51,7 @@ class AdmBlogTagController extends Controller
         return view('admin.blog.tag.update', $viewData);
     }
 
-    public function update(Request $request, $id)
+    public function update(RequestCreateTag $request, $id)
     {
         $data = $request->all();
         $update = $this->tagService->update($id, $data);

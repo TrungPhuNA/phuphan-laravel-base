@@ -12,4 +12,16 @@ class ArticleRepository extends BaseRepository implements ArticleRepositoryInter
     {
         parent::__construct($model);
     }
+
+    public function getListsArticles($params, $columns = ["*"])
+    {
+        $query = $this->model->with("menu");
+        if (isset($filters['filters']) && is_array($filters['filters'])) {
+            $query = $this->applyFilters($query, $filters['filters']);
+        }
+        $page = isset($filters['page']) ? (int) $filters['page'] : 1;
+        $pageSize = isset($filters['page_size']) ? (int) $filters['page_size'] : 10;
+
+        return $query->orderBy('id', 'DESC')->paginate($pageSize, $columns, 'page', $page);
+    }
 }

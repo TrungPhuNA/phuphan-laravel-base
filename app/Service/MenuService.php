@@ -28,6 +28,11 @@ class MenuService
         return $this->menuRepository->paginate($params);
     }
 
+    public function getAll($params = [])
+    {
+        return $this->menuRepository->getAll($params);
+    }
+
     /**
      * @param $menuDto
      * @return mixed

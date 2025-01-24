@@ -8,6 +8,7 @@
 namespace App\Service;
 
 use App\Repositories\Contracts\ArticleRepositoryInterface;
+use Illuminate\Support\Str;
 
 class ArticleService
 {
@@ -27,13 +28,19 @@ class ArticleService
         return $this->articleRepository->paginate($params);
     }
 
+    public function getListsArticles($params)
+    {
+        return $this->articleRepository->getListsArticles($params);
+    }
+
     /**
-     * @param $roleDto
+     * @param $articleDto
      * @return mixed
      */
-    public function create($roleDto)
+    public function create($articleDto)
     {
-        return $this->articleRepository->create($roleDto);
+        $articleDto["slug"] = Str::slug($articleDto["name"]);
+        return $this->articleRepository->create($articleDto);
     }
 
     /**
@@ -47,11 +54,12 @@ class ArticleService
 
     /**
      * @param $id
-     * @param $roleDto
+     * @param $articleDto
      * @return \Illuminate\Database\Eloquent\Collection|null
      */
-    public function update($id, $roleDto) {
-        return $this->articleRepository->update($id, $roleDto);
+    public function update($id, $articleDto) {
+        $articleDto["slug"] = Str::slug($articleDto["name"]);
+        return $this->articleRepository->update($id, $articleDto);
     }
 
     /**

@@ -6,5 +6,5 @@ use AtCore\CoreRepo\Repositories\Contracts\BaseRepositoryInterface;
 
 interface ArticleRepositoryInterface extends BaseRepositoryInterface
 {
-    // Add your custom methods here
+    public function getListsArticles($params, $columns = ["*"]);
 }

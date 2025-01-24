@@ -25,7 +25,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Image</th>
-                                    <th scope="col" style="width: 200px">Name</th>
+                                    <th scope="col" style="width: 30%">Name</th>
                                     <th scope="col">Menu</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Created</th>
@@ -42,7 +42,9 @@
                                         <td>
                                             <a href="" style="width: 200px">{{ $item->name }}</a>
                                         </td>
-                                        <td></td>
+                                        <td>
+                                            {{ $item->menu->name ?? "N\A" }}
+                                        </td>
                                         <td>
                                              <span class="badge {{ \App\HelpersClass\HelpersRenderHtml::getStatusBadgeClass($item->status) }}">
                                                 {{ ucfirst($item->status) }}

@@ -23,8 +23,10 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label class="form-label">Name</label>
-                                    <input type="text" class="form-control" placeholder="Name" name="name" value="{{ old("name", $tag->name) }}" required>
-                                    <div class="invalid-feedback">Name không được để trống</div>
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror"" placeholder="Name" name="name" value="{{ old("name", $tag->name) }}" required>
+                                    @error('name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Trạng thái</label>

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin\Blog;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RequestCreateTag extends FormRequest
+class RequestCreateMenu extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,7 @@ class RequestCreateTag extends FormRequest
     {
         $id = $this->id ? $this->id : null;
         return [
-            'name' => 'required|string|min:5|max:199|unique:bl_tags,name,' . $id,
+            'name' => 'required|string|min:5|max:199|unique:bl_menus,name,' . $id,
             'status' => 'required',
         ];
     }

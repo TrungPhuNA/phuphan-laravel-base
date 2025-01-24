@@ -9,7 +9,7 @@
                     <h3><strong>Thêm mới</strong></h3>
                 </div>
                 <div class="col-auto ms-auto text-end mt-n1">
-                    <a href="{{ route("admin.blog.tag.index") }}" class="btn btn-danger"><i class="align-middle" data-feather="rotate-ccw"></i> Trở về</a>
+                    <a href="{{ route("admin.blog.menu.index") }}" class="btn btn-danger"><i class="align-middle" data-feather="rotate-ccw"></i> Trở về</a>
                 </div>
             </div>
             <div class="row">
@@ -23,8 +23,10 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label class="form-label">Name</label>
-                                    <input type="text" class="form-control" placeholder="Name" name="name" value="{{ old("name") }}" required>
-                                    <div class="invalid-feedback">Name không được để trống</div>
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Name" name="name" value="{{ old("name") }}" required>
+                                    @error('name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Trạng thái</label>

@@ -12,4 +12,9 @@ class MenuRepository extends BaseRepository implements MenuRepositoryInterface
     {
         parent::__construct($model);
     }
+
+    public function getAll($params = [])
+    {
+        return Menu::all();
+    }
 }

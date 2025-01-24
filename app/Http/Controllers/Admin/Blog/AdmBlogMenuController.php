@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Blog;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Blog\RequestCreateMenu;
 use App\Http\Requests\Admin\Blog\RequestCreateTag;
 use App\Service\MenuService;
 use Illuminate\Http\Request;
@@ -31,9 +32,9 @@ class AdmBlogMenuController extends Controller
         return view('admin.blog.menu.create');
     }
 
-    public function store(RequestCreateTag $requestCreateTag)
+    public function store(RequestCreateMenu $requestCreateMenu)
     {
-        $menuDto = $requestCreateTag->except("_token");
+        $menuDto = $requestCreateMenu->except("_token");
         $menu = $this->menuService->create($menuDto);
         if ($menu) {
             return redirect()->route("admin.blog.menu.index")->with("success", "Tạo mới thành công");
@@ -51,10 +52,9 @@ class AdmBlogMenuController extends Controller
         return view('admin.blog.menu.update', $viewData);
     }
 
-    public function update(Request $request, $id)
+    public function update(RequestCreateMenu $requestCreateMenu, $id)
     {
-        $data = $request->all();
-        $update = $this->menuService->update($id, $data);
+        $update = $this->menuService->update($id, $requestCreateMenu->all());
         if ($update) {
             return redirect()->route("admin.blog.menu.index")->with("success", "Cập nhật thành công");
         }
