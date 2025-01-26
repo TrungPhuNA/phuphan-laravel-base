@@ -39,7 +39,9 @@ class AdmBlogArticleController extends Controller
     public function create()
     {
         $viewData = [
-            "menus" => $this->menuService->getAll()
+            "menus"      => $this->menuService->getAll(),
+            "tags"       => $this->tagService->getAll(),
+            "tagsActive" => []
         ];
 
         return view('admin.blog.article.create', $viewData);
@@ -50,6 +52,9 @@ class AdmBlogArticleController extends Controller
         $articleDto = $requestCreateArticle->except("_token");
         $article = $this->articleService->create($articleDto);
         if ($article) {
+            if (!empty($requestCreateArticle->tags_id)) {
+                $this->articleService->syncTags($requestCreateArticle->tags_id, $article->id);
+            }
             return redirect()->route("admin.blog.article.index")->with("success", "Tạo mới thành công");
         }
         return redirect()->back()->with("danger", "Tạo mới thất bại");
@@ -59,8 +64,10 @@ class AdmBlogArticleController extends Controller
     {
         $article = $this->articleService->findById($id);
         $viewData = [
-            "menus"   => $this->menuService->getAll(),
-            "article" => $article
+            "menus"      => $this->menuService->getAll(),
+            "article"    => $article,
+            "tags"       => $this->tagService->getAll(),
+            "tagsActive" => $this->articleService->getTagIdByArticle($id)
         ];
 
         return view('admin.blog.article.update', $viewData);
@@ -71,6 +78,10 @@ class AdmBlogArticleController extends Controller
         $data = $request->all();
         $update = $this->articleService->update($id, $data);
         if ($update) {
+            if (!empty($requestCreateArticle->tags_id)) {
+                $this->articleService->syncTags($requestCreateArticle->tags_id, $id);
+            }
+
             return redirect()->route("admin.blog.article.index")->with("success", "Cập nhật thành công");
         }
         return redirect()->back()->with("danger", "Cập nhật thất bại");

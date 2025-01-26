@@ -19,6 +19,11 @@ class TagService
         $this->tagRepository = $tagRepository;
     }
 
+    public function getAll($params = [])
+    {
+        return $this->tagRepository->getAll($params);
+    }
+
     /**
      * @param $params
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator

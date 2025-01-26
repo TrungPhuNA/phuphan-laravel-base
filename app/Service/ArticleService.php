@@ -69,4 +69,37 @@ class ArticleService
     public function delete($id) {
         return $this->articleRepository->delete($id);
     }
+
+    /**
+     * @param $tags
+     * @param $idArticle
+     * @return void
+     */
+    public function syncTags($tags, $idArticle)
+    {
+        if (!empty($tags)) {
+            $datas = [];
+            foreach ($tags as $key => $tag) {
+                $datas[] = [
+                    'article_id' => $idArticle,
+                    'tag_id'     => $tag
+                ];
+            }
+
+            \DB::table('bl_articles_tags')->where('article_id', $idArticle)->delete();
+            \DB::table('bl_articles_tags')->insert($datas);
+        }
+    }
+
+    /**
+     * @param $articleID
+     * @return array
+     */
+    public function getTagIdByArticle($articleID)
+    {
+        return \DB::table('bl_articles_tags')
+            ->where('article_id', $articleID)
+            ->pluck('tag_id')
+            ->toArray() ?? [];
+    }
 }
