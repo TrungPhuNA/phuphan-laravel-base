@@ -44,6 +44,26 @@ return [
                 'type'     => 2
             ],
             [
+                'name'     => 'Ecommerce',
+                'icon'     => 'database',
+                'id'       => 'ecommerce',
+                'sub_menu' => [
+                    [
+                        'name'  => 'Brand',
+                        'route' => 'admin.ecommerce.brand.index'
+                    ],
+                    [
+                        'name'  => 'Label',
+                        'route' => 'admin.ecommerce.label.index'
+                    ],
+                    [
+                        'name'  => 'Category',
+                        'route' => 'admin.ecommerce.category.index'
+                    ],
+                ],
+                'type'     => 2
+            ],
+            [
                 'name'     => 'Phân quyền',
                 'icon'     => 'shield',
                 'id'       => 'acl',

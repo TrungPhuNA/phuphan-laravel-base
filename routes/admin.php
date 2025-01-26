@@ -13,4 +13,5 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin','as' => 'admin.','middl
     require_once "inc_admin/_inc_setting.php";
     require_once "inc_admin/_inc_acl.php";
     require_once "inc_admin/_inc_blog.php";
+    require_once "inc_admin/_inc_ecommerce.php";
 })->middleware("permission");
