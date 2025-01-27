@@ -68,6 +68,18 @@ return [
                 'type'     => 2
             ],
             [
+                'name'     => 'Ads',
+                'icon'     => 'bar-chart',
+                'id'       => 'setting',
+                'sub_menu' => [
+                    [
+                        'name'  => 'Setting ads',
+                        'route' => 'admin.setting.ads.index'
+                    ]
+                ],
+                'type'     => 2
+            ],
+            [
                 'name'     => 'Phân quyền',
                 'icon'     => 'shield',
                 'id'       => 'acl',
@@ -86,7 +98,7 @@ return [
                     ],
                 ],
                 'type'     => 2
-            ],
+            ]
         ]
     ]
 ];

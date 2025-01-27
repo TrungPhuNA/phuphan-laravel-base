@@ -2,9 +2,9 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Models\SettingInfomation;
-use AtCore\CoreRepo\Repositories\Eloquent\BaseRepository;
+use App\Models\Setting\SettingInfomation;
 use App\Repositories\Contracts\SettingInfoRepositoryInterface;
+use AtCore\CoreRepo\Repositories\Eloquent\BaseRepository;
 
 class SettingInfoRepository extends BaseRepository implements SettingInfoRepositoryInterface
 {

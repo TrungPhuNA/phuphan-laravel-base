@@ -24,6 +24,28 @@ return new class extends Migration
             $table->string("copyright")->nullable();
             $table->timestamps();
         });
+        Schema::create('setting_ads', function (Blueprint $table) {
+            $table->id();
+            $table->text("manage_ads_setting")->nullable();
+            $table->text("ads_client_id")->nullable();
+            $table->string("adsense_ads_file")->nullable();
+            $table->timestamps();
+        });
+        Schema::create('setting_ads_items', function (Blueprint $table) {
+            $table->id();
+            $table->string("name")->nullable();
+            $table->string("title")->nullable();
+            $table->string("button_label")->nullable();
+            $table->string("key")->nullable();
+            $table->enum("status", ["published", "draft", "pending"])->default("pending");
+            $table->tinyInteger("ads_type")->default(1)->comment(" 1 customer , 2 ads");
+            $table->string("url")->nullable();
+            $table->string("image_desktop")->nullable();
+            $table->string("image_mobile")->nullable();
+            $table->string("location")->nullable();
+            $table->date("expired_at")->nullable();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -32,5 +54,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('setting_information');
+        Schema::dropIfExists('setting_ads_items');
+        Schema::dropIfExists('setting_ads');
     }
 };

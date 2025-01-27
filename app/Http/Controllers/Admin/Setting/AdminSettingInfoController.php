@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Setting;
 
 use App\Http\Controllers\Controller;
 use App\Service\SettingInfoService;
@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class AdminSettingInfoController extends Controller
 {
-    protected $settingInfoService;
+    protected SettingInfoService $settingInfoService;
     public function __construct(SettingInfoService $settingInfoService)
     {
         $this->settingInfoService = $settingInfoService;
