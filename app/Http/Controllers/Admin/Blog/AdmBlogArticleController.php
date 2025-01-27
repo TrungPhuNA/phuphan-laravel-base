@@ -97,5 +97,4 @@ class AdmBlogArticleController extends Controller
         $this->articleService->delete($id);
         return redirect()->back()->with("success", "Cập nhật dữ liệu thành công");
     }
-
 }

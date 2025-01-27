@@ -74,4 +74,21 @@ Route::group(['prefix' => 'ecommerce','namespace' => 'ecommerce','as' => 'ecomme
             ->name("delete")
             ->defaults('description', 'Xoá thuộc tính');
     });
+    Route::group(['prefix' => 'product','as' => 'product.'], function (){
+        Route::get("",[\App\Http\Controllers\Admin\Ecommerce\AdmEcommerceProductController::class,'index'])->name("index")
+            ->defaults('description', 'Danh sách sản phẩm');
+        Route::get("create",[\App\Http\Controllers\Admin\Ecommerce\AdmEcommerceProductController::class,'create'])->name("create")
+            ->defaults('description', 'Thêm mới sản phẩm');
+        Route::post("create",[\App\Http\Controllers\Admin\Ecommerce\AdmEcommerceProductController::class,'store'])
+            ->defaults('description', 'Thêm mới sản phẩm');
+
+        Route::get("update/{id}",[\App\Http\Controllers\Admin\Ecommerce\AdmEcommerceProductController::class,'edit'])->name("update")
+            ->defaults('description', 'Cập nhật sản phẩm');
+        Route::post("update/{id}",[\App\Http\Controllers\Admin\Ecommerce\AdmEcommerceProductController::class,'update'])
+            ->defaults('description', 'Cập nhật sản phẩm');
+
+        Route::get("delete/{id}",[\App\Http\Controllers\Admin\Ecommerce\AdmEcommerceProductController::class,'delete'])
+            ->name("delete")
+            ->defaults('description', 'Xoá sản phẩm');
+    });
 });

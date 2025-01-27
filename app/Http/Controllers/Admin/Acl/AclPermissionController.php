@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin\Acl;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Acl\RequestCreateAccount;
 use App\Http\Requests\Admin\Acl\RequestCreatePermission;
 use App\Service\PermissionService;
 use Illuminate\Http\Request;

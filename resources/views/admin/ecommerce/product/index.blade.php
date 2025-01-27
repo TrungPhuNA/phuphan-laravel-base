@@ -6,18 +6,18 @@
 
             <div class="row mb-2 mb-xl-3">
                 <div class="col-auto d-none d-sm-block">
-                    <h3><strong>Thương hiệu</strong></h3>
+                    <h3><strong>Sản phẩm</strong></h3>
                 </div>
 
                 <div class="col-auto ms-auto text-end mt-n1">
-                    <a href="{{ route("admin.ecommerce.category.create") }}" class="btn btn-primary"><i class="align-middle" data-feather="plus"></i> Thêm mới</a>
+                    <a href="{{ route("admin.ecommerce.product.create") }}" class="btn btn-primary"><i class="align-middle" data-feather="plus"></i> Thêm mới</a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">Danh sách thương hiệu</h5>
+                            <h5 class="card-title">Danh sách bài viết</h5>
                         </div>
                         <div class="table-responsive">
                             <table class="table mb-0">
@@ -26,14 +26,15 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Image</th>
                                     <th scope="col" style="width: 30%">Name</th>
-                                    <th scope="col">Slug</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Brand</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Created</th>
                                     <th scope="col">#</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($categories ?? [] as $item)
+                                @foreach($products ?? [] as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>
@@ -43,7 +44,10 @@
                                             <a href="" style="width: 200px">{{ $item->name }}</a>
                                         </td>
                                         <td>
-                                            <a href="" style="width: 200px">{{ $item->slug }}</a>
+                                            {{ $item->category->name ?? "N\A" }}
+                                        </td>
+                                        <td>
+                                            {{ $item->brand->name ?? "N\A" }}
                                         </td>
                                         <td>
                                              <span class="badge {{ \App\HelpersClass\HelpersRenderHtml::getStatusBadgeClass($item->status) }}">
@@ -52,8 +56,8 @@
                                         </td>
                                         <td class="text-nowrap">{{ $item->created_at->format("Y-m-d") }}</td>
                                         <td class="text-nowrap">
-                                            <a href="{{ route("admin.ecommerce.category.delete", $item->id) }}" class="btn btn-sm btn-danger"><i class="align-middle" data-feather="trash"></i></a>
-                                            <a href="{{ route("admin.ecommerce.category.update", $item->id) }}" class="btn btn-sm btn-primary"><i class="align-middle" data-feather="edit"></i></a>
+                                            <a href="{{ route("admin.ecommerce.product.delete", $item->id) }}" class="btn btn-sm btn-danger"><i class="align-middle" data-feather="trash"></i></a>
+                                            <a href="{{ route("admin.ecommerce.product.update", $item->id) }}" class="btn btn-sm btn-primary"><i class="align-middle" data-feather="edit"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -63,7 +67,7 @@
                     </div>
                 </div>
                 <div class="col-12">
-                    {!! $categories->links("vendor.pagination.bootstrap-5") !!}
+                    {!! $products->links("vendor.pagination.bootstrap-5") !!}
                 </div>
             </div>
         </div>

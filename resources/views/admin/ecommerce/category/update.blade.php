@@ -3,7 +3,7 @@
 @section("content")
     <main class="content">
         <div class="container-fluid p-0">
-            @include("admin.blog.article.form")
+            @include("admin.ecommerce.category.form")
         </div>
     </main>
 @stop

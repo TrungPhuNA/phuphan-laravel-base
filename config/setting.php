@@ -60,6 +60,10 @@ return [
                         'name'  => 'Category',
                         'route' => 'admin.ecommerce.category.index'
                     ],
+                    [
+                        'name'  => 'Product',
+                        'route' => 'admin.ecommerce.product.index'
+                    ],
                 ],
                 'type'     => 2
             ],

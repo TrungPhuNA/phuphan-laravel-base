@@ -1,9 +1,9 @@
 @extends("admin.layouts.admin_master")
-@section("title_page","Thêm mới")
+@section("title_page","Cập nhật")
 @section("content")
     <main class="content">
         <div class="container-fluid p-0">
-            @include("admin.ecommerce.category.form")
+            @include("admin.ecommerce.product.form")
         </div>
     </main>
 @stop
