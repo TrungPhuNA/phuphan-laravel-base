@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin\Blog;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Blog\RequestCreateArticle;
-use App\Http\Requests\Admin\Blog\RequestCreateTag;
 use App\Service\ArticleService;
 use App\Service\MenuService;
 use App\Service\TagService;

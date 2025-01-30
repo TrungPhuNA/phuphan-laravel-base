@@ -20,3 +20,8 @@ Icon
 ```
 https://feathericons.com/
 ```
+
+Blog
+```shell
+https://milo.bootlab.io/home-fullwidth.html
+```

@@ -134,7 +134,7 @@ return new class extends Migration
                 "created_at"  => Carbon\Carbon::now()
             ],
             [
-                "name"        => "MUA CÀNG NHIỀU GIẢM CÀNG SÂU - LÊN ĐẾN 15%",
+                "name"        => "Mua càng nhiều giảm càng sâu - lên đến 15%",
                 "slug"        => "mua-nhieu-giam-nhieu",
                 "status"      => "pending",
                 "description" => "Tri ân 10 năm hoạt động, YODY tung khuyến mãi cực kỳ lớn. Khách hàng mua càng nhiều sẽ được giảm giá giảm càng sâu, phù hợp với các khách hàng mua chung theo nhóm hoặc mua cho cả gia đình.",
@@ -146,7 +146,7 @@ return new class extends Migration
                 "created_at"  => Carbon\Carbon::now()
             ],
             [
-                "name"        => "ĐỘC QUYỀN WEBSITE - VOUCHER 100K CHO KHÁCH HÀNG ĐĂNG KÍ EMAIL",
+                "name"        => "Độc quyền website - voucher 100k cho khách hàng đăng kí email",
                 "slug"        => "voucher-100k-cho-khach-hang-dang-ki-email",
                 "status"      => "pending",
                 "description" => "hời gian nhận và sử dụng mã khuyến mãi kéo dài từ ngày 01/10/2024 đến ngày 31/10/2024. Sau khi nhận mã, khách hàng sẽ sử dụng trực tiếp để mua hàng trên Website (không áp dụng tại cửa hàng).",
