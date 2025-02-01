@@ -24,4 +24,9 @@ class ArticleRepository extends BaseRepository implements ArticleRepositoryInter
 
         return $query->orderBy('id', 'DESC')->paginate($pageSize, $columns, 'page', $page);
     }
+
+    public function findBySlug($slug)
+    {
+        return Article::with("menu")->where("slug", $slug)->first();
+    }
 }

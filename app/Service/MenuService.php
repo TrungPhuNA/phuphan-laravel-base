@@ -53,6 +53,14 @@ class MenuService
     }
 
     /**
+     * @param $slug
+     * @return mixed
+     */
+    public function findBySlug($slug) {
+        return $this->menuRepository->findBySlug($slug);
+    }
+
+    /**
      * @param $id
      * @param $menuDto
      * @return \Illuminate\Database\Eloquent\Collection|null

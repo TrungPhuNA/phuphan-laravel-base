@@ -52,6 +52,11 @@ class ArticleService
         return $this->articleRepository->find($id);
     }
 
+    public function findBySlug($slug)
+    {
+        return $this->articleRepository->findBySlug($slug);
+    }
+
     /**
      * @param $id
      * @param $articleDto

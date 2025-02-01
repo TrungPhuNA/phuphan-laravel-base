@@ -17,4 +17,8 @@ class MenuRepository extends BaseRepository implements MenuRepositoryInterface
     {
         return Menu::all();
     }
+
+    public function findBySlug($slug){
+        return Menu::where("slug", $slug)->first();
+    }
 }

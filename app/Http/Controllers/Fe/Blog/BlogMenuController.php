@@ -23,12 +23,14 @@ class BlogMenuController extends BlogBaseController
         $this->menuService = $menuService;
     }
 
-    public function index(Request $request)
+    public function index(Request $request, $slug)
     {
         try {
+            $menu = $this->menuService->findBySlug($slug);
             $articles = $this->articleService->getListsArticles([
-                "page"      => 1,
-                "page_size" => 6
+                "page"             => 1,
+                "page_size"        => 6,
+                "filters[menu_id]" => $menu->id
             ]);
 
             $viewData = [

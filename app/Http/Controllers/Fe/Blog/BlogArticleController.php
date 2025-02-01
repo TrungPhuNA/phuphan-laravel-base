@@ -23,11 +23,13 @@ class BlogArticleController extends BlogBaseController
         $this->menuService = $menuService;
     }
 
-    public function index(Request $request)
+    public function index(Request $request, $slug)
     {
+        $articleDetail = $this->articleService->findBySlug($slug);
         $articles = $this->articleService->getListsArticles($request->all());
         $viewData = [
-            "articles" => $articles
+            "articles"      => $articles,
+            "articleDetail" => $articleDetail
         ];
 
         return view('fe.blog.article-detail.index', $viewData);

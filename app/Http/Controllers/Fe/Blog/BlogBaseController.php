@@ -17,7 +17,5 @@ class BlogBaseController extends Controller
     ) {
         $this->tagService = $tagService;
         $this->menuService = $menuService;
-
-
     }
 }
