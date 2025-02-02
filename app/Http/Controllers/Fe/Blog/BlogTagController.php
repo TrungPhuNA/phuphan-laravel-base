@@ -32,7 +32,8 @@ class BlogTagController extends BlogBaseController
 
             $articles = $this->articleService->getListsArticles([
                 "page"      => 1,
-                "page_size" => 6
+                "page_size" => 6,
+                "tag_id"    => $tag->id
             ]);
 
             $viewData = [

@@ -16,7 +16,7 @@
                         </a>
                     </header>
                     <a href="{{ route("news.article.detail",["slug" => $item->slug]) }}" title="{{ $item->name }}">
-                        <img class="card-img" src="{{ $item->avatar }}" alt="" />
+                        <img class="card-img" src="{{ $item->avatar }}" alt="{{ $item->name }}" onerror="this.src='https://123code.net/images/preloader.png'" />
                     </a>
                     <div class="card-body">
                         <p class="card-text">{{ $item->description }}</p>

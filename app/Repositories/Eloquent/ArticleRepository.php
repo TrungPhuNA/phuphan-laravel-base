@@ -16,6 +16,11 @@ class ArticleRepository extends BaseRepository implements ArticleRepositoryInter
     public function getListsArticles($params, $columns = ["*"])
     {
         $query = $this->model->with("menu");
+        if(!empty($params["tag_id"])) {
+            $query->whereHas("tags", function ($q) use ($params){
+                $q->where("tag_id", $params["tag_id"]);
+            });
+        }
         if (isset($filters['filters']) && is_array($filters['filters'])) {
             $query = $this->applyFilters($query, $filters['filters']);
         }

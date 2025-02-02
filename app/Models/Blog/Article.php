@@ -13,4 +13,9 @@ class Article extends Model
     {
         return $this->belongsTo(Menu::class,'menu_id');
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class,'bl_articles_tags','tag_id','article_id');
+    }
 }
