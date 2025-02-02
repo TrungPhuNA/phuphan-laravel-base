@@ -21,6 +21,7 @@ class BlogHomeController extends BlogBaseController
         $this->tagService = $tagService;
         $this->articleService = $articleService;
         $this->menuService = $menuService;
+        parent::__construct($tagService, $menuService, $articleService);
     }
 
     public function index(Request $request)

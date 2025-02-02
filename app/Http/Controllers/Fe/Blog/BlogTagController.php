@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Fe\Blog;
 
+use App\Http\Controllers\Controller;
 use App\Service\ArticleService;
 use App\Service\MenuService;
 use App\Service\TagService;
 use Illuminate\Http\Request;
 
-class BlogMenuController extends BlogBaseController
+class BlogTagController extends BlogBaseController
 {
     protected TagService $tagService;
     protected MenuService $menuService;
@@ -27,17 +28,18 @@ class BlogMenuController extends BlogBaseController
     public function index(Request $request, $slug)
     {
         try {
-            $menu = $this->menuService->findBySlug($slug);
+            $tag = $this->tagService->findBySlug($slug);
+
             $articles = $this->articleService->getListsArticles([
-                "page"             => 1,
-                "page_size"        => 6,
-                "filters[menu_id]" => $menu->id
+                "page"      => 1,
+                "page_size" => 6
             ]);
 
             $viewData = [
-                "articles" => $articles
+                "articles" => $articles,
+                "tag"      => $tag
             ];
-            return view("fe.blog.home.index", $viewData);
+            return view("fe.blog.tag.index", $viewData);
         } catch (\Exception $exception) {
             \Log::error("=======[BlogHomeController.php] File: "
                 .$exception->getFile()

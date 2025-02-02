@@ -105,6 +105,7 @@ return new class extends Migration
         ];
 
         foreach ($tags as $item) {
+            $item["slug"] = \Illuminate\Support\Str::slug($item["name"]);
             \Illuminate\Support\Facades\DB::table("bl_tags")->insert($item);
         }
 

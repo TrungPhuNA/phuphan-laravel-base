@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Models\Blog\Menu;
 use App\Models\Blog\Tag;
 use AtCore\CoreRepo\Repositories\Eloquent\BaseRepository;
 use App\Repositories\Contracts\TagRepositoryInterface;
@@ -16,6 +15,11 @@ class TagRepository extends BaseRepository implements TagRepositoryInterface
 
     public function getAll($params = [])
     {
-        return Menu::all();
+        return Tag::all();
+    }
+
+    public function findBySlug($slug)
+    {
+        return Tag::where("slug", $slug)->first();
     }
 }

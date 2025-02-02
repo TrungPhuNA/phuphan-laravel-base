@@ -1,8 +1,7 @@
 @extends("fe.blog.layouts.app_blog_master")
 @section("content")
     <div class="row">
-        @foreach($articles->chunk(3) as $articlesHome)
-            @foreach($articlesHome as $item)
+        @foreach($articles as $item)
             <div class="col-md-4">
                 <article class="card mb-4">
                     <header class="card-header">
@@ -23,17 +22,16 @@
                     </div>
                 </article><!-- /.card -->
             </div>
-            @endforeach
         @endforeach
     </div>
 @stop
 @section("content_sidebar")
-<aside class="sidebar">
-    <div class="card mb-4">
-        <div class="card-body">
-            <h4 class="card-title">Tổng hợp tin tức</h4>
-            <p class="card-text">Tin tức chuyên mục mới được tổng hợp tại đây</p>
-        </div>
-    </div><!-- /.card -->
-</aside>
+    <aside class="sidebar">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h1 class="card-title">{{ $tag->name }}</h1>
+                <p class="card-text">{{ $tag->description }}</p>
+            </div>
+        </div><!-- /.card -->
+    </aside>
 @stop

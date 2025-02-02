@@ -19,47 +19,7 @@
 </head>
 <body>
 
-<header>
-    <nav class="navbar navbar-expand-md navbar-light bg-white absolute-top">
-        <div class="container">
-
-            <button class="navbar-toggler order-2 order-md-1" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbar-left navbar-right" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse order-3 order-md-2" id="navbar-left">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/" title="Trang chủ">Trang chủ</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown02">
-                            <a class="dropdown-item" href="post-image.html">Image</a>
-                            <a class="dropdown-item" href="post-video.html">Video</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <a class="navbar-brand mx-auto order-1 order-md-3" href="{{ route("news.index") }}" title="Bài viết">123code.net</a>
-
-            <div class="collapse navbar-collapse order-4 order-md-4" id="navbar-right">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="page-about.html">Giới thiệu</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="page-contact.html">Liên hệ</a>
-                    </li>
-                </ul>
-                <form class="form-inline" role="search">
-                    <input class="search js-search form-control form-control-rounded me-sm-2" type="text" title="Enter search query here.." placeholder="Search.." aria-label="Search">
-                </form>
-            </div>
-        </div>
-    </nav>
-</header>
+@include("fe.blog.layouts._inc_blog_nav")
 
 <main class="main pt-4">
 
@@ -72,47 +32,30 @@
 
             </div>
             <div class="col-md-3 ms-auto">
-
-                <aside class="sidebar">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h4 class="card-title">About</h4>
-                            <p class="card-text">Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam <a href="#">semper libero</a>, sit amet adipiscing sem neque sed ipsum. </p>
-                        </div>
-                    </div><!-- /.card -->
-                </aside>
-
+                @yield("content_sidebar")
                 <aside class="sidebar sidebar-sticky">
                     <div class="card mb-4">
                         <div class="card-body">
                             <h4 class="card-title">Tags</h4>
-                            <a class="btn btn-light btn-sm mb-1" href="page-category.html">Journey</a>
-                            <a class="btn btn-light btn-sm mb-1" href="page-category.html">Work</a>
-                            <a class="btn btn-light btn-sm mb-1" href="page-category.html">Lifestype</a>
-                            <a class="btn btn-light btn-sm mb-1" href="page-category.html">Photography</a>
-                            <a class="btn btn-light btn-sm mb-1" href="page-category.html">Food & Drinks</a>
+                            @foreach($tagsGlobal as $item)
+                                <a class="btn btn-light btn-sm mb-1" href="{{ route("news.tag.detail",["slug" => $item->slug]) }}" title="{{ $item->name }}">{{ $item->name }}</a>
+                            @endforeach
                         </div>
                     </div><!-- /.card -->
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h4 class="card-title">Popular stories</h4>
+                            <h4 class="card-title">Bài viết nổi bật</h4>
 
-                            <a href="post-image.html" class="d-inline-block">
-                                <h4 class="h6">The blind man</h4>
-                                <img class="card-img" src="img/articles/2.jpg" alt="" />
-                            </a>
-                            <time class="timeago" datetime="2021-09-03 20:00">3 october 2021</time> in Lifestyle
-
-                            <a href="post-image.html" class="d-inline-block mt-3">
-                                <h4 class="h6">Crying on the news</h4>
-                                <img class="card-img" src="img/articles/3.jpg" alt="" />
-                            </a>
-                            <time class="timeago" datetime="2021-07-16 20:00">16 july 2021</time> in Work
-
+                            @foreach($articlesGlobal ?? [] as $item)
+                                <a href="{{ route("news.article.detail",["slug" => $item->slug]) }}" title="{{ $item->name }}" class="d-inline-block">
+                                    <h4 class="h6">{{ $item->name }}</h4>
+                                    <img class="card-img" src="{{ $item->avatar }}" alt="{{ $item->name }}" onerror="this.src='https://123code.net/images/preloader.png'"  />
+                                </a>
+                                <time class="timeago" datetime="{{ $item->created_at->locale('vi') }}">{{ $item->created_at }}</time> in {{ $item->menu->name ?? "N\A" }}
+                            @endforeach
                         </div>
                     </div><!-- /.card -->
                 </aside>
-
             </div>
         </div>
     </div>

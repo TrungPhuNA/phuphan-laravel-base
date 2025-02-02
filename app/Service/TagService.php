@@ -53,6 +53,15 @@ class TagService
     }
 
     /**
+     * @param $slug
+     * @return mixed
+     */
+    public function findBySlug($slug)
+    {
+        return $this->tagRepository->findBySlug($slug);
+    }
+
+    /**
      * @param $id
      * @param $tagDto
      * @return \Illuminate\Database\Eloquent\Collection|null
