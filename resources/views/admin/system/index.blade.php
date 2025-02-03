@@ -7,12 +7,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title mb-0">Common</h5>
-                        </div>
                         <div class="card-body">
                             <div class="row g-3">
-                                @foreach(config('setting.admin.menu_setting.common') ?? [] as $item)
+                                @foreach(config('setting.admin.menu_setting.system') ?? [] as $item)
                                     <div class="col-sm-4">
                                         <div class="d-flex">
                                             <div class="flex-shrink-0">

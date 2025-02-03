@@ -51,7 +51,11 @@ return [
     */
 
     'channels' => [
-
+        'request_logs' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/request.log'),
+            'level' => 'info',
+        ],
         'stack' => [
             'driver' => 'stack',
             'channels' => explode(',', env('LOG_STACK', 'single')),

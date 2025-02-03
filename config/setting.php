@@ -40,6 +40,32 @@ return [
                     "desc" => "Setting config email"
                 ],
             ],
+            "system" => [
+                [
+                    "name" => "Users",
+                    "icon" => "user",
+                    "route" => "admin.acl.account.index",
+                    "desc" => "View and update your system users"
+                ],
+                [
+                    "name" => "Roles And Permissions",
+                    "icon" => "users",
+                    "route" => "admin.acl.role.index",
+                    "desc" => "View and update your roles and permissions"
+                ],
+                [
+                    "name" => "Request Logs",
+                    "icon" => "file",
+                    "route" => "admin.system.log.request.index",
+                    "desc" => "View and delete your system request logs"
+                ],
+                [
+                    "name" => "Activity Logs",
+                    "icon" => "file",
+                    "route" => "",
+                    "desc" => "View and delete your system activity logs"
+                ],
+            ],
         ],
         'menu_sidebar'       => [
             [

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string("avatar")->nullable();
             $table->enum("status",["pending","verify","block","inactive"])->default("pending");
+            $table->enum("user_type",["USER","ADMIN","SYSTEM"])->default("USER");
             $table->rememberToken();
             $table->timestamps();
         });

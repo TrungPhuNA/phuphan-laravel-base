@@ -7,7 +7,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'admin','namespace' => 'Admin','as' => 'admin.','middleware' => ['check.login.admin']], function (){
+Route::group(['prefix' => 'admin','namespace' => 'Admin','as' => 'admin.','middleware' => ['check.login.admin','log.requests']], function (){
     Route::get('',[\App\Http\Controllers\Admin\AdminDashboardController::class,'index'])
         ->name('dashboard')->middleware('permission:full|admin.dashboard')->defaults('description', 'Thống kê');
     require_once "inc_admin/_inc_system.php";

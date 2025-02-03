@@ -20,9 +20,11 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'check.login.admin' => \App\Http\Middleware\CheckLoginMiddleware::class,
-            'permission' => PermissionMiddleware::class,
+            'permission'        => PermissionMiddleware::class,
+            'log.requests'      => \App\Http\Middleware\LogRequestsMiddleware::class,
         ]);
 //        $middleware->append(PermissionMiddleware::class);
+        $middleware->append(\App\Http\Middleware\LogRequestsMiddleware::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
