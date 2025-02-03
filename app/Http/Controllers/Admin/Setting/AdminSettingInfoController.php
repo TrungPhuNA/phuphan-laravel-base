@@ -16,11 +16,16 @@ class AdminSettingInfoController extends Controller
 
     public function index()
     {
+        return view('admin.setting.index');
+    }
+
+    public function showUpdateInfo()
+    {
         $settingInfo = $this->settingInfoService->findOne();
         $viewData = [
             'settingInfo' => $settingInfo
         ];
-        return view('admin.setting.index', $viewData);
+        return view('admin.setting.update_info', $viewData);
     }
 
     public function updateSetting(Request $request)

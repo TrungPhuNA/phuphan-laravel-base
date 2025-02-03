@@ -7,10 +7,40 @@
 
 return [
     'prefix_title' => 'Base Laravel',
-
+    'image_default' => 'https://123code.net/images/preloader.png',
     'admin' => [
         'check_permission'   => env("APP_CHECK_PERMISSION", true),
         'email_supper_admin' => env('EMAIL_SUPPER_ADMIN', null),
+        'menu_setting' => [
+            "common" => [
+                [
+                    "name" => "General",
+                    "icon" => "settings",
+                    "route" => "admin.setting.update.info",
+                    "desc" => "View and update your general settings and activate license"
+                ],
+                [
+                    "name" => "Email",
+                    "icon" => "mail",
+                    "route" => "admin.setting.email.index",
+                    "desc" => "Setting config email"
+                ],
+            ],
+            "others" => [
+                [
+                    "name" => "General",
+                    "icon" => "settings",
+                    "route" => "",
+                    "desc" => "View and update your general settings and activate license"
+                ],
+                [
+                    "name" => "Email",
+                    "icon" => "mail",
+                    "route" => "",
+                    "desc" => "Setting config email"
+                ],
+            ],
+        ],
         'menu_sidebar'       => [
             [
                 'name' => 'Page',
@@ -98,7 +128,21 @@ return [
                     ],
                 ],
                 'type'     => 2
-            ]
+            ],
+            [
+                'name'     => 'Setting',
+                'icon'     => 'settings',
+                'route'    => 'admin.setting.info',
+                'sub_menu' => [],
+                'type'     => 2
+            ],
+            [
+                'name'     => 'Platform Administration',
+                'icon'     => 'shield',
+                'route'    => 'admin.system.general',
+                'sub_menu' => [],
+                'type'     => 2
+            ],
         ]
     ]
 ];
