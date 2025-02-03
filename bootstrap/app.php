@@ -24,7 +24,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'log.requests'      => \App\Http\Middleware\LogRequestsMiddleware::class,
         ]);
 //        $middleware->append(PermissionMiddleware::class);
-        $middleware->append(\App\Http\Middleware\LogRequestsMiddleware::class);
+//        $middleware->append(\App\Http\Middleware\LogRequestsMiddleware::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

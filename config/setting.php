@@ -117,6 +117,10 @@ return [
                         'route' => 'admin.ecommerce.category.index'
                     ],
                     [
+                        'name'  => 'Attribute',
+                        'route' => 'admin.ecommerce.attribute.index'
+                    ],
+                    [
                         'name'  => 'Product',
                         'route' => 'admin.ecommerce.product.index'
                     ],
@@ -153,6 +157,13 @@ return [
                         'route' => 'admin.acl.permission.index'
                     ],
                 ],
+                'type'     => 2
+            ],
+            [
+                'name'     => 'Appearance',
+                'icon'     => 'codepen',
+                'route'    => 'admin.setting.info',
+                'sub_menu' => [],
                 'type'     => 2
             ],
             [

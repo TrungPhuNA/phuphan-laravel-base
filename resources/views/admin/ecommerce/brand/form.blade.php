@@ -48,6 +48,39 @@
                     </div>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header border-bottom">
+                    <h5 class="card-title">Avatar</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <input type="button" class="btn btn-primary" id="lfm" data-input="thumbnail" data-preview="holder" value="Upload">
+                            <input id="thumbnail" class="form-control" type="text" name="avatar" value="{{ $brand->avatar ?? config("setting.image_default") }}">
+                        </div>
+                        <img id="holder" style="margin-top:15px;max-height:100px;" src="{{ $brand->avatar ?? config("setting.image_default") }}">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </form>
+
+@section("script")
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+<script>
+    var options = {
+        filebrowserImageBrowseUrl: '/filemanager?type=image',
+        // filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+        filebrowserImageUploadUrl: '/filemanager/upload?type=Images&_token=',
+        filebrowserBrowseUrl: '/filemanager?type=Files',
+        filebrowserUploadUrl: '/filemanager/upload?type=Files&_token='
+    };
+</script>
+<script>
+    $('#lfm').filemanager('image');
+    CKEDITOR.replace('my-editor', options);
+</script>
+@stop

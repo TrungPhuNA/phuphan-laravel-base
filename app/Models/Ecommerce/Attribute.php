@@ -8,4 +8,9 @@ class Attribute extends Model
 {
     protected $table = 'ec_attributes';
     protected $guarded = [''];
+
+    public function attributeValues()
+    {
+        return $this->hasMany(AttributeValue::class,"attribute_id");
+    }
 }

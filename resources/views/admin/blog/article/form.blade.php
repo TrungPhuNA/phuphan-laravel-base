@@ -91,9 +91,9 @@
                     <div class="mb-3">
                         <div class="input-group">
                             <input type="button" class="btn btn-primary" id="lfm" data-input="thumbnail" data-preview="holder" value="Upload">
-                            <input id="thumbnail" class="form-control" type="text" name="avatar" value="{{ $article->avatar ?? "https://123code.net/images/preloader.png" }}">
+                            <input id="thumbnail" class="form-control" type="text" name="avatar" value="{{ $article->avatar ?? config("setting.image_default") }}">
                         </div>
-                        <img id="holder" style="margin-top:15px;max-height:100px;" src="{{ $article->avatar ?? "https://123code.net/images/preloader.png" }}">
+                        <img id="holder" style="margin-top:15px;max-height:100px;" src="{{ $article->avatar ?? config("setting.image_default") }}">
                     </div>
                 </div>
             </div>
