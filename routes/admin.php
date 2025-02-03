@@ -14,4 +14,8 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin','as' => 'admin.','middl
     require_once "inc_admin/_inc_acl.php";
     require_once "inc_admin/_inc_blog.php";
     require_once "inc_admin/_inc_ecommerce.php";
+
+    Route::group(['prefix' => 'laravel-filemanager'], function () {
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
 })->middleware("permission");
