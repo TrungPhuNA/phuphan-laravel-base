@@ -17,4 +17,9 @@ class AttributeRepository extends BaseRepository implements AttributeRepositoryI
     {
         return Attribute::with("attributeValues")->get();
     }
+
+    public function getByIds($ids = [])
+    {
+        return Attribute::whereIn("id", $ids)->get();
+    }
 }

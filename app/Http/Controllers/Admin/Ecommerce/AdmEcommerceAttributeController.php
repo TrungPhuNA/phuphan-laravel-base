@@ -34,11 +34,7 @@ class AdmEcommerceAttributeController extends Controller
 
     public function create()
     {
-        $viewData = [
-            "attributeValues" => []
-        ];
-
-        return view('admin.ecommerce.attribute.create', $viewData);
+        return view('admin.ecommerce.attribute.create');
     }
 
     public function store(RequestCreateAttribute $requestCreateAttribute)
@@ -124,12 +120,18 @@ class AdmEcommerceAttributeController extends Controller
 
     public function delete(Request $request, $id)
     {
-        $brand = $this->attributeService->findById($id);
-        if (empty($brand)) {
+        $attribute = $this->attributeService->findById($id);
+        if (empty($attribute)) {
             return redirect()->back()->with("danger", "Không tồn tại thương hiệu");
         }
 
         $this->attributeService->delete($id);
         return redirect()->back()->with("success", "Cập nhật dữ liệu thành công");
+    }
+
+    public function getListsValues($id)
+    {
+        $attributeValue = $this->attributeValueService->getListsByAttributeId($id);
+        return response()->json($attributeValue);
     }
 }

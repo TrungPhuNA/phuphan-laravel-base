@@ -1,3 +1,7 @@
+# Note version
+```shell
+node v18.17.0
+```
 # Install repository
 ```shell
 php artisan make:repository User --path=app

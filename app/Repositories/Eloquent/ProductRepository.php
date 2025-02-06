@@ -24,4 +24,14 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
         return $query->orderBy('id', 'DESC')->paginate($pageSize, $columns, 'page', $page);
     }
+
+    public function findById($id)
+    {
+        return $this->model->with("variants")->where("id", $id)->first();
+    }
+
+    public function findBySlug($slug)
+    {
+        return $this->model->where("slug", $slug)->first();
+    }
 }

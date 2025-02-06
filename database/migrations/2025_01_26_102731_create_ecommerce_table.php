@@ -130,7 +130,8 @@ return new class extends Migration {
         });
         Schema::create('ec_variant_attributes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('variant_id')->constrained('ec_product_variants')->onDelete('cascade');
+            $table->foreignId('product_variant_id')->constrained('ec_product_variants')->onDelete('cascade');
+            $table->foreignId('attribute_id')->constrained('ec_attributes')->onDelete('cascade');
             $table->foreignId('attribute_value_id')->constrained('ec_attribute_values')->onDelete('cascade');
             $table->timestamps();
         });

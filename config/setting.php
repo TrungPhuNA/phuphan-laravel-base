@@ -7,7 +7,7 @@
 
 return [
     'prefix_title' => 'Base Laravel',
-    'image_default' => 'https://123code.net/images/preloader.png',
+    'image_default' => env('APP_URL', 'http://localhost') . '/preloader.png',
     'admin' => [
         'check_permission'   => env("APP_CHECK_PERMISSION", true),
         'email_supper_admin' => env('EMAIL_SUPPER_ADMIN', null),

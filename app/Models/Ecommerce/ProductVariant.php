@@ -4,9 +4,9 @@ namespace App\Models\Ecommerce;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProductLabels extends Model
+class ProductVariant extends Model
 {
-    protected $table = 'ec_product_labels';
+    protected $table = 'ec_product_variants';
     protected $guarded = [''];
 
     public function attributes()

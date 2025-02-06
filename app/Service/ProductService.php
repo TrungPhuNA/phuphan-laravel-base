@@ -57,6 +57,15 @@ class ProductService
     }
 
     /**
+     * @param $slug
+     * @return mixed
+     */
+    public function findBySlug($slug): mixed
+    {
+        return $this->productRepository->findBySlug($slug);
+    }
+
+    /**
      * @param $id
      * @param $modelDto
      * @return \Illuminate\Database\Eloquent\Collection|null
@@ -81,7 +90,7 @@ class ProductService
      * @param $productID
      * @return void
      */
-    public function syncLabels($labels = [], $productID)
+    public function syncLabels($labels, $productID): void
     {
         if (!empty($labels)) {
             $datas = [];

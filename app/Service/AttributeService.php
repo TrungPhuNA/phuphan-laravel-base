@@ -19,9 +19,22 @@ class AttributeService
         $this->attributeRepository = $attributeRepository;
     }
 
+    /**
+     * @param $params
+     * @return mixed
+     */
     public function getAll($params = [])
     {
         return $this->attributeRepository->getAll($params);
+    }
+
+    /**
+     * @param $ids
+     * @return mixed
+     */
+    public function getByIds($ids = [])
+    {
+        return $this->attributeRepository->getByIds($ids);
     }
 
     /**

@@ -7,4 +7,5 @@ use AtCore\CoreRepo\Repositories\Contracts\BaseRepositoryInterface;
 interface AttributeRepositoryInterface extends BaseRepositoryInterface
 {
     public function getAll($params = []);
+    public function getByIds($ids = []);
 }

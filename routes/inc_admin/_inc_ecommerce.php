@@ -67,6 +67,10 @@ Route::group(['prefix' => 'ecommerce','namespace' => 'ecommerce','as' => 'ecomme
 
         Route::get("update/{id}",[\App\Http\Controllers\Admin\Ecommerce\AdmEcommerceAttributeController::class,'edit'])->name("update")
             ->defaults('description', 'Cập nhật thuộc tính');
+
+        Route::get("values/{id}",[\App\Http\Controllers\Admin\Ecommerce\AdmEcommerceAttributeController::class,'getListsValues'])->name("value")
+            ->defaults('description', 'Danh sách value của thuộc tính');
+
         Route::post("update/{id}",[\App\Http\Controllers\Admin\Ecommerce\AdmEcommerceAttributeController::class,'update'])
             ->defaults('description', 'Cập nhật thuộc tính');
 
@@ -90,5 +94,9 @@ Route::group(['prefix' => 'ecommerce','namespace' => 'ecommerce','as' => 'ecomme
         Route::get("delete/{id}",[\App\Http\Controllers\Admin\Ecommerce\AdmEcommerceProductController::class,'delete'])
             ->name("delete")
             ->defaults('description', 'Xoá sản phẩm');
+
+        Route::get("delete-variants/{id}",[\App\Http\Controllers\Admin\Ecommerce\AdmEcommerceProductController::class,'deleteVariants'])
+            ->name("delete.variants")
+            ->defaults('description', 'Xoá biến thể');
     });
 });
