@@ -132,6 +132,12 @@ class AdmEcommerceProductController extends Controller
                 ? $this->attributeService->getByIds(explode(",", $request->input('selected_attributes')))
                 : []);
 
+        if (!$request->has('selected_attributes') && !empty($attributesIds)) {
+            $request->merge([
+                'selected_attributes' => implode(",", $attributesIds)
+            ]);
+        }
+
 
         $viewData = [
             "categories"         => $this->categoryService->getAll(),

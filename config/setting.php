@@ -163,7 +163,17 @@ return [
                 'name'     => 'Appearance',
                 'icon'     => 'codepen',
                 'route'    => 'admin.setting.info',
-                'sub_menu' => [],
+                'id'       => 'appearance',
+                'sub_menu' => [
+                    [
+                        'name'  => 'Menu',
+                        'route' => 'admin.appearance.menu.index'
+                    ],
+                    [
+                        'name'  => 'Page',
+                        'route' => 'admin.appearance.pages.index'
+                    ],
+                ],
                 'type'     => 2
             ],
             [

@@ -30,10 +30,10 @@ return new class extends Migration {
             $table->enum("status", ["published", "draft", "pending"])->default("pending");
             $table->string('description')->nullable();
             $table->integer('parent_id')->default(0)->index();
-            $table->string('title_seo')->nullable();
-            $table->string('description_seo')->nullable();
-            $table->string('keywords_seo')->nullable();
-            $table->tinyInteger('index_seo')->default(1);
+            $table->string('seo_title')->nullable();
+            $table->text('seo_description')->nullable();
+            $table->string('seo_image')->nullable();
+            $table->boolean('seo_index')->default(1);
             $table->timestamps();
         });
         Schema::create('ec_warehouses', function (Blueprint $table) {
@@ -52,10 +52,10 @@ return new class extends Migration {
             $table->string('avatar')->nullable();
             $table->enum("status", ["published", "draft", "pending"])->default("pending");
             $table->string('description')->nullable();
-            $table->string('title_seo')->nullable();
-            $table->string('description_seo')->nullable();
-            $table->string('keywords_seo')->nullable();
-            $table->tinyInteger('index_seo')->default(1);
+            $table->string('seo_title')->nullable();
+            $table->text('seo_description')->nullable();
+            $table->string('seo_image')->nullable();
+            $table->boolean('seo_index')->default(1);
             $table->timestamps();
         });
         Schema::create('ec_product_labels', function (Blueprint $table) {
@@ -72,6 +72,7 @@ return new class extends Migration {
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
             $table->string("description")->nullable();
+            $table->string('sku')->unique()->nullable();
             $table->string('avatar')->nullable();
             $table->enum("status", ["published", "draft", "pending"])->default("pending");
             $table->integer('number')->default(0);
@@ -83,6 +84,10 @@ return new class extends Migration {
             $table->float("height")->nullable();
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->foreignId('brand_id')->nullable()->constrained('ec_brands');
+            $table->string('seo_title')->nullable();
+            $table->text('seo_description')->nullable();
+            $table->string('seo_image')->nullable();
+            $table->boolean('seo_index')->default(1);
             $table->timestamps();
         });
         Schema::create('ec_attributes', function (Blueprint $table) {
@@ -220,6 +225,20 @@ return new class extends Migration {
                 "created_at" => Carbon\Carbon::now()
             ]);
         }
+
+        $brands = [
+            [
+                "name" => "Nike"
+            ]
+        ];
+        foreach ($brands as $item) {
+            \Illuminate\Support\Facades\DB::table("ec_brands")->insert([
+                "name"       => $item["name"],
+                "slug"       => \Illuminate\Support\Str::slug($item["name"]),
+                "created_at" => Carbon\Carbon::now()
+            ]);
+        }
+
         $lables = [
             [
                 "name" => "New"
@@ -286,7 +305,7 @@ return new class extends Migration {
         ];
 
         foreach ($products as $product) {
-            $productInsert = \Illuminate\Support\Facades\DB::table("ec_products")->insertGetId([
+            $productInsert = \App\Models\Ecommerce\Product::insertGetId([
                 "name"        => $product["name"],
                 "slug"        => \Illuminate\Support\Str::slug($product['name']),
                 "price"       => $product["price"],

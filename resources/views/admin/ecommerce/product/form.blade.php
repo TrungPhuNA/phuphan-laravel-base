@@ -42,7 +42,6 @@
                         </button>
                     </div>
                 </div>
-
                 <!-- Modal chọn thuộc tính -->
                 <div class="modal fade" id="attributeModal" tabindex="-1" aria-labelledby="attributeModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -80,7 +79,6 @@
                                 <th><input type="checkbox"></th>
                                 <th>ID</th>
                                 <th>Image</th>
-                                <!-- Cột thuộc tính sẽ được thêm vào đây bằng JS -->
                                 @foreach($selectedAttributes ?? [] as $attribute)
                                     <th data-attr-id="{{ $attribute->id }}">{{ $attribute->name }}</th>
                                 @endforeach
@@ -177,7 +175,7 @@
                     <div class="mb-3">
                         <select name="labels[]" class="form-control" id="labels" multiple>
                             @foreach($labels ?? [] as $item)
-                                <option value="{{ $item->id }}" {{ in_array($item->id, $labelsActive ?? []) ? "selected" : "" }} >{{ $item->name }}</option>
+                                <option style="font-size: 14px" value="{{ $item->id }}" {{ in_array($item->id, $labelsActive ?? []) ? "selected" : "" }} >{{ $item->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -199,10 +197,22 @@
 </script>
 
 <script>
+    let imgDefault = "{{ config("setting.image_default") }}";
     document.addEventListener("DOMContentLoaded", function () {
         let variantIndex = document.querySelectorAll("#variants-container tr").length;
-        let selectedAttributes = new URLSearchParams(window.location.search).get("selected_attributes")?.split(",") || [];
 
+        let url = new URL(window.location.href);
+        let params = new URLSearchParams(url.search);
+        // Kiểm tra nếu selected_attributes chưa có trong URL
+        if (!params.has("selected_attributes")) {
+            params.set("selected_attributes", "{{ implode(',', $selectedAttributes ? $selectedAttributes->pluck('id')->toArray() : []) }}");
+
+            // Cập nhật URL mà không reload trang
+            window.history.replaceState({}, "", `${url.pathname}?${params.toString()}`);
+        }
+
+        let selectedAttributes = new URLSearchParams(window.location.search).get("selected_attributes")?.split(",") || [];
+        console.info("======= selectedAttributes; ", selectedAttributes);
         selectedAttributes.forEach(attrId => {
             let checkbox = document.getElementById(`attribute-${attrId}`);
             if (checkbox) {
@@ -218,21 +228,6 @@
             input.value = value;
         }
 
-        function updateHeaderAttributesV1(selectedAttributes, selectedLabels) {
-            let headerRow = document.getElementById("variant-header-row");
-
-            // Xóa tất cả cột thuộc tính cũ
-            document.querySelectorAll(".dynamic-variant-th").forEach(el => el.remove());
-
-            // Thêm cột mới
-            selectedAttributes.forEach((attr, index) => {
-                let th = document.createElement("th");
-                th.classList.add("dynamic-variant-th");
-                th.setAttribute("data-attr-id", attr);
-                th.innerText = selectedLabels[index];
-                headerRow.insertBefore(th, headerRow.children[headerRow.children.length - 4]);
-            });
-        }
         function updateHeaderAttributes() {
             let headerRow = document.getElementById("variant-header-row");
             document.querySelectorAll(".dynamic-variant-th").forEach(el => el.remove());
@@ -341,7 +336,9 @@
             newRow.innerHTML = `
             <td><input type="checkbox" name="selected_variants[]" value=""></td>
             <td>New</td>
-            <td><input type="file" name="variants[${variantIndex}][image]" class="form-control"></td>
+            <td>
+                <img src="${imgDefault}" width="50">
+            </td>
             ${attributesHtml}
             <td><input type="text" name="variants[${variantIndex}][price]" class="form-control price-input" required></td>
             <td><input type="number" name="variants[${variantIndex}][stock]" class="form-control" required></td>

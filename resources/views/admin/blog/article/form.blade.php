@@ -30,6 +30,49 @@
                     </div>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header border-bottom d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">Search Engine Optimize</h5>
+                    <a href="#" id="toggle-seo-meta">Edit SEO meta</a>
+                </div>
+                <div class="card-body" id="seo-meta-section" style="display: none;">
+                    <div class="mb-3">
+                        <label class="form-label">SEO Title</label>
+                        <input type="text" class="form-control" name="seo_title" value="{{ old('seo_title', $article->seo_title ?? '') }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">SEO Description</label>
+                        <textarea class="form-control" name="seo_description" rows="2">{{ old('seo_description', $article->seo_description ?? '') }}</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">SEO Image</label>
+                        <div class="input-group">
+                            <input type="button" class="btn btn-primary" id="lfm-seo" data-input="seo-thumbnail" data-preview="seo-holder" value="Upload">
+                            <input id="seo-thumbnail" class="form-control" type="text" name="seo_image" value="{{ $article->seo_image ?? '' }}">
+                        </div>
+                        <img id="seo-holder" style="margin-top:15px;max-height:100px;" src="{{ $article->seo_image ?? '' }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Index</label>
+                        <div>
+                            <input type="radio" name="seo_index" value="1" {{ old('seo_index', $article->seo_index ?? 1) == 1 ? 'checked' : '' }}> Index
+                            <input type="radio" name="seo_index" value="0" {{ old('seo_index', $article->seo_index ?? 1) == 0 ? 'checked' : '' }}> No index
+                        </div>
+                    </div>
+                </div>
+
+                @if(isset($article))
+                    <!-- Hiển thị khi có nội dung -->
+                    <div class="card-body" id="seo-preview-section" style="{{ isset($article) && ($article->seo_title || $article->seo_description) ? '' : 'display: none;' }}">
+                        <h4>{{ $article->seo_title }}</h4>
+                        <p class="seo-link" id="toggle-seo-preview" style="">{{ route("news.article.detail",$article->slug) }}</p>
+                        <p><span>{{ $article->updated_at->format("Y-m-d") }} ,</span> {{ $article->seo_description ?? 'Setup meta title & description to make your site easy to discover on search engines such as Google.' }}</p>
+                    </div>
+                @endif
+            </div>
         </div>
         <div class="col-3 col-xl-3">
             <div class="card">

@@ -12,8 +12,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="shortcut icon" href="{{ asset('icon-48x48.png') }}" />
 
-    <link rel="canonical" href="https://demo.adminkit.io/dashboard-ecommerce.html" />
-
     <title>@yield("title_page","Home") | {{ config('setting.prefix_title') }}</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -25,6 +23,7 @@
     <!-- BEGIN SETTINGS -->
     <!-- Remove this after purchasing -->
     <link class="js-stylesheet" href="/static/light.css" rel="stylesheet">
+    <link class="js-stylesheet" href="/admin/customer.css" rel="stylesheet">
     <script src="/static/settings.js"></script>
     <style>
         body {
@@ -70,6 +69,25 @@
     </script>
 @endif
 @yield('script')
+
+<script>
+    $(document).ready(function () {
+        // Toggle hiển thị form SEO meta
+        $("#toggle-seo-meta").click(function (e) {
+            e.preventDefault();
+            $("#seo-meta-section").toggle();
+        });
+
+        // Toggle xem trước SEO preview
+        $("#toggle-seo-preview").click(function (e) {
+            e.preventDefault();
+            $("#seo-meta-section").toggle();
+        });
+
+        // Kích hoạt file manager cho ảnh SEO
+        $('#lfm-seo').filemanager('image');
+    });
+</script>
 </body>
 
 </html>

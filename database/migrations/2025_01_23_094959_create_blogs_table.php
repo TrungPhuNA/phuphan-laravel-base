@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string("description")->nullable();
             $table->enum("status", ["published", "draft", "pending"])->default("pending");
             $table->tinyInteger('is_featured')->default(0);
+            $table->string('seo_title')->nullable();
+            $table->text('seo_description')->nullable();
+            $table->string('seo_image')->nullable();
+            $table->boolean('seo_index')->default(1);
             $table->timestamps();
         });
         Schema::create('bl_articles', function (Blueprint $table) {
@@ -32,6 +36,10 @@ return new class extends Migration
             $table->tinyInteger('is_featured')->default(0);
             $table->string("avatar")->nullable();
             $table->bigInteger("views")->default(0);
+            $table->string('seo_title')->nullable();
+            $table->text('seo_description')->nullable();
+            $table->string('seo_image')->nullable();
+            $table->boolean('seo_index')->default(1);
             $table->timestamps();
         });
         Schema::create('bl_tags', function (Blueprint $table) {
@@ -41,6 +49,10 @@ return new class extends Migration
             $table->string("description")->nullable();
             $table->enum("status", ["published", "draft", "pending"])->default("pending");
             $table->tinyInteger('is_featured')->default(0);
+            $table->string('seo_title')->nullable();
+            $table->text('seo_description')->nullable();
+            $table->string('seo_image')->nullable();
+            $table->boolean('seo_index')->default(1);
             $table->timestamps();
         });
         Schema::create('bl_articles_tags', function (Blueprint $table) {

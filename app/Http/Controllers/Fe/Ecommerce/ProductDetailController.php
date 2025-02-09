@@ -37,8 +37,9 @@ class ProductDetailController extends Controller
         })->get();
 
         $viewData = [
-            "product"    => $product,
-            "attributes" => $attributes
+            "product"         => $product,
+            "productsRelated" => $this->productService->getListsProducts($request->all()),
+            "attributes"      => $attributes
         ];
         return view("fe.ecommerce.product-detail.index", $viewData);
     }
