@@ -4,7 +4,7 @@
         <div class="col-9 col-xl-9">
             <div class="card">
                 <div class="card-header border-bottom">
-                    <h5 class="card-title">Thông tin</h5>
+                    <h5 class="card-title mb-0">Thông tin</h5>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
@@ -118,7 +118,7 @@
         <div class="col-3 col-xl-3">
             <div class="card">
                 <div class="card-header border-bottom">
-                    <h5 class="card-title">Xuất bản</h5>
+                    <h5 class="card-title mb-0">Xuất bản</h5>
                 </div>
                 <div class="card-body">
                     <button type="submit" class="btn btn-primary"><i class="align-middle" data-feather="save"></i> Xác nhận</button>
@@ -127,7 +127,7 @@
             </div>
             <div class="card">
                 <div class="card-header border-bottom">
-                    <h5 class="card-title">Trạng thái</h5>
+                    <h5 class="card-title mb-0">Trạng thái</h5>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
@@ -141,7 +141,7 @@
             </div>
             <div class="card">
                 <div class="card-header border-bottom">
-                    <h5 class="card-title">Chuyên mục</h5>
+                    <h5 class="card-title mb-0">Chuyên mục</h5>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
@@ -155,7 +155,7 @@
             </div>
             <div class="card">
                 <div class="card-header border-bottom">
-                    <h5 class="card-title">Thương hiệu</h5>
+                    <h5 class="card-title mb-0">Thương hiệu</h5>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
@@ -169,7 +169,7 @@
             </div>
             <div class="card">
                 <div class="card-header border-bottom">
-                    <h5 class="card-title">Nhãn</h5>
+                    <h5 class="card-title mb-0">Nhãn</h5>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">

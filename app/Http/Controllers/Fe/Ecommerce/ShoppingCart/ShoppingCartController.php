@@ -12,6 +12,7 @@ class ShoppingCartController extends Controller
     public function index()
     {
         $cartItems = Cart::getContent();
+        dd($cartItems);
         return view('fe.ecommerce.shopping-cart.index', compact('cartItems'));
     }
 

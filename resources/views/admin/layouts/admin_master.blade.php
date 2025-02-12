@@ -69,7 +69,7 @@
     </script>
 @endif
 @yield('script')
-
+<script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 <script>
     $(document).ready(function () {
         // Toggle hiển thị form SEO meta
@@ -86,6 +86,15 @@
 
         // Kích hoạt file manager cho ảnh SEO
         $('#lfm-seo').filemanager('image');
+        let $elementLfm = $("#lfmImage");
+        if($elementLfm) {
+            $('#lfmImage').filemanager('image');
+        }
+        $('.lfm-button-image').each(function () {
+            let inputId = $(this).data('input');
+            $(this).filemanager('image', {prefix: '/filemanager', input: '#' + inputId});
+        });
+
     });
 </script>
 </body>

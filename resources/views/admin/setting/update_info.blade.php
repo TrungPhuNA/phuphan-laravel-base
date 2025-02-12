@@ -63,6 +63,26 @@
                                                 <input type="text" class="form-control" name="fax"  id="fax" value="{{ $settingInfo->fax ?? '' }}">
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="inputCity">Logo</label>
+                                                <div class="input-group">
+                                                    <input type="button" class="btn btn-primary lfm-button-image"  data-input="thumbnail" data-preview="holder" value="Upload">
+                                                    <input id="thumbnail" data-input="logo" class="form-control" type="text" name="logo" value="{{ $settingInfo->logo ?? config("setting.image_default") }}">
+                                                </div>
+                                                <img id="holder" style="margin-top:15px;max-height:100px;" src="{{ $settingInfo->logo ?? config("setting.image_default") }}">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="inputCity">Favicon</label>
+                                                <div class="input-group">
+                                                    <input type="button" class="btn btn-primary lfm-button-image" data-input="favicon" data-preview="holder" value="Upload">
+                                                    <input id="favicon" class="form-control" type="text" name="favicon" value="{{ $settingInfo->favicon ?? config("setting.image_default") }}">
+                                                </div>
+                                                <img id="holder" style="margin-top:15px;width: 50px;height: 50px;object-fit: cover" src="{{ $settingInfo->favicon ?? config("setting.image_default") }}">
+                                            </div>
+                                        </div>
                                         <button type="submit" class="btn btn-primary" id="save-settings-btn">Save changes</button>
                                     </form>
 
